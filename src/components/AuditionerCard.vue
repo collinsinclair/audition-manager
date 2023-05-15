@@ -11,7 +11,7 @@ function getNextAction(status: string): string | null {
       return "Check In";
     }
     case "waiting": {
-      return "Complete";
+      return "Mark Complete";
     }
     default: {
       return null;
@@ -53,6 +53,7 @@ function getStatusColor(status: string): string {
   <v-hover>
     <template v-slot:default="{ isHovering, props }">
       <v-card
+        elevation="2"
         class="px-1 py-1 mx-1 my-2"
         :color="isHovering ? 'grey-lighten-2' : ''"
         v-bind="props"
