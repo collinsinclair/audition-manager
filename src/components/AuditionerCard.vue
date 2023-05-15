@@ -60,11 +60,11 @@ function getStatusColor(status: string): string {
       >
         <v-card-title>
           {{ auditioner.fullName }} ({{ auditioner.age }})
-          <v-icon
-            icon="mdi-circle-medium"
-            :color="getStatusColor(auditioner.status)"
+          <v-badge
+            dot
             style="float: right"
-          />
+            :color="getStatusColor(auditioner.status)"
+          ></v-badge>
         </v-card-title>
         <v-card-subtitle>{{ auditioner.pronouns }}</v-card-subtitle>
         <v-dialog v-model="dialogOpen" width="auto">
