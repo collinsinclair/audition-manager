@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-main>
-      <Home style="max-height: 100vh; overflow-y: hidden;"/>
+      <Home style="max-height: 100vh; overflow-y: hidden" />
     </v-main>
   </v-app>
 </template>

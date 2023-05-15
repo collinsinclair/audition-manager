@@ -29,7 +29,7 @@ const filteredAuditioners = computed(() => {
   <div class="text-center text-h4 mb-3">
     {{ statusText }} ({{ filteredAuditioners.length }})
   </div>
-  <v-card elevation="3" class="px-2 py-2">
+  <v-card elevation="3" class="cards px-2 py-2">
     <v-text-field
       clearable
       label="Search"
@@ -45,4 +45,9 @@ const filteredAuditioners = computed(() => {
   </v-card>
 </template>
 
-<style scoped></style>
+<style scoped>
+.cards {
+  max-height: 90%;
+  overflow-y: auto;
+}
+</style>

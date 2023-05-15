@@ -101,7 +101,8 @@ const auditionerData = ref([
     parentCell: "987-654-3210",
     parentEmail: "jennifer.martinez@example.com",
     status: "complete",
-  },{
+  },
+  {
     fullName: "John Smith",
     pronouns: "he/him",
     age: 18,
@@ -199,7 +200,8 @@ const auditionerData = ref([
     parentCell: "987-654-3210",
     parentEmail: "jennifer.martinez@example.com",
     status: "complete",
-  },{
+  },
+  {
     fullName: "John Smith",
     pronouns: "he/him",
     age: 18,
@@ -297,7 +299,8 @@ const auditionerData = ref([
     parentCell: "987-654-3210",
     parentEmail: "jennifer.martinez@example.com",
     status: "complete",
-  },{
+  },
+  {
     fullName: "John Smith",
     pronouns: "he/him",
     age: 18,
@@ -395,7 +398,8 @@ const auditionerData = ref([
     parentCell: "987-654-3210",
     parentEmail: "jennifer.martinez@example.com",
     status: "complete",
-  },{
+  },
+  {
     fullName: "John Smith",
     pronouns: "he/him",
     age: 18,
@@ -493,7 +497,8 @@ const auditionerData = ref([
     parentCell: "987-654-3210",
     parentEmail: "jennifer.martinez@example.com",
     status: "complete",
-  },{
+  },
+  {
     fullName: "John Smith",
     pronouns: "he/him",
     age: 18,
@@ -591,7 +596,8 @@ const auditionerData = ref([
     parentCell: "987-654-3210",
     parentEmail: "jennifer.martinez@example.com",
     status: "complete",
-  },{
+  },
+  {
     fullName: "John Smith",
     pronouns: "he/him",
     age: 18,
@@ -689,7 +695,8 @@ const auditionerData = ref([
     parentCell: "987-654-3210",
     parentEmail: "jennifer.martinez@example.com",
     status: "complete",
-  },{
+  },
+  {
     fullName: "John Smith",
     pronouns: "he/him",
     age: 18,
@@ -787,7 +794,8 @@ const auditionerData = ref([
     parentCell: "987-654-3210",
     parentEmail: "jennifer.martinez@example.com",
     status: "complete",
-  },{
+  },
+  {
     fullName: "John Smith",
     pronouns: "he/him",
     age: 18,
@@ -885,7 +893,8 @@ const auditionerData = ref([
     parentCell: "987-654-3210",
     parentEmail: "jennifer.martinez@example.com",
     status: "complete",
-  },{
+  },
+  {
     fullName: "John Smith",
     pronouns: "he/him",
     age: 18,
@@ -983,7 +992,8 @@ const auditionerData = ref([
     parentCell: "987-654-3210",
     parentEmail: "jennifer.martinez@example.com",
     status: "complete",
-  },{
+  },
+  {
     fullName: "John Smith",
     pronouns: "he/him",
     age: 18,
@@ -1108,21 +1118,21 @@ function getProgressValue(): number {
       </v-col>
     </v-row>
     <v-row class="queue-row">
-      <v-col>
+      <v-col class="queue-col">
         <QueueList
           :auditioners="auditionerData"
           statusText="Registered"
           status="registered"
         />
       </v-col>
-      <v-col>
+      <v-col class="queue-col">
         <QueueList
           :auditioners="auditionerData"
           statusText="Waiting Room"
           status="waiting"
         />
       </v-col>
-      <v-col>
+      <v-col class="queue-col">
         <QueueList
           :auditioners="auditionerData"
           statusText="Complete"
@@ -1135,13 +1145,10 @@ function getProgressValue(): number {
 
 <style scoped>
 .queue-row {
-  height: 100%;
-  overflow-y: hidden;
-
+  height: 90%;
 }
 
-.queue-row > .v-col {
-  max-height: 100%;
-  overflow-y: hidden;
+.queue-col {
+  height: 90%;
 }
 </style>
