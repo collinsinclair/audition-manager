@@ -1145,7 +1145,7 @@ function getProgressValue(): number {
 
 <style scoped>
 .queue-row {
-  height: 90%;
+  height: 80%;
 }
 
 .queue-col {

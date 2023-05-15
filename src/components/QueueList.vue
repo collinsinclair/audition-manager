@@ -26,17 +26,18 @@ const filteredAuditioners = computed(() => {
 </script>
 
 <template>
-  <div class="text-center text-h4 mb-3">
+  <div class="text-center text-h5 mb-3">
     {{ statusText }} ({{ filteredAuditioners.length }})
   </div>
+  <v-text-field
+    clearable
+    label="Search"
+    prepend-inner-icon="mdi-magnify"
+    variant="outlined"
+    v-model="searchString"
+    style="margin-bottom: -10px;"
+  ></v-text-field>
   <v-card elevation="3" class="cards px-2 py-2">
-    <v-text-field
-      clearable
-      label="Search"
-      prepend-inner-icon="mdi-magnify"
-      variant="outlined"
-      v-model="searchString"
-    ></v-text-field>
     <auditioner-card
       v-for="auditioner in filteredAuditioners"
       :auditioner="auditioner"
