@@ -104,14 +104,10 @@ const auditionerData = ref([
   },
 ]);
 function getProgressValue(): number {
-  return (
-    (100 *
-      (auditionerData.value.length -
-        auditionerData.value.filter(
-          (auditioner) => auditioner.status === "registered"
-        ).length)) /
-    auditionerData.value.length
-  );
+  const complete = auditionerData.value.filter(
+    (auditioner) => auditioner.status === "complete"
+  ).length;
+  return (100 * complete) / auditionerData.value.length;
 }
 </script>
 
