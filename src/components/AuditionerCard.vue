@@ -1,6 +1,35 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { auditionerProps } from "@/types";
 let dialogOpen = ref(false);
+const props = defineProps<{
+  auditioner: auditionerProps;
+}>();
+function getNextAction(status: string): string | null {
+  switch (status) {
+    case "registered": {
+      return "Check In";
+    }
+    case "waiting": {
+      return "Complete";
+    }
+    default: {
+      return null;
+    }
+  }
+}
+function setNextAction(auditioner: auditionerProps): void {
+  switch (auditioner.status) {
+    case "registered": {
+      auditioner.status = "waiting";
+      break;
+    }
+    case "waiting": {
+      auditioner.status = "complete";
+    }
+  }
+  dialogOpen.value = false;
+}
 </script>
 
 <template>
@@ -12,14 +41,31 @@ let dialogOpen = ref(false);
         v-bind="props"
         @click="dialogOpen = true"
       >
-        <v-card-title>Collin Sinclair</v-card-title>
-        <v-card-subtitle>he/him/his</v-card-subtitle>
-        <v-card-text><a href="tel:17203715712">(720) 371-5712</a></v-card-text>
+        <v-card-title
+          >{{ auditioner.fullName }} ({{ auditioner.age }})</v-card-title
+        >
+        <v-card-subtitle>{{ auditioner.pronouns }}</v-card-subtitle>
         <v-dialog v-model="dialogOpen" width="auto">
           <v-card>
-            <v-card-title>Collin Sinclair</v-card-title>
-            <v-card-subtitle>he/him/his</v-card-subtitle>
-            <v-card-text>Lorem ipsum el dolor sit amet.</v-card-text>
+            <v-card-title
+              >{{ auditioner.fullName }} ({{ auditioner.age }})</v-card-title
+            >
+            <v-card-subtitle>{{ auditioner.pronouns }}</v-card-subtitle>
+            <v-card-text>
+              <p class="font-weight-bold text-body-1">Student Contact Info</p>
+              <p>Email: {{ auditioner.studentEmail }}</p>
+              <p>Cell: {{ auditioner.studentCell }}</p>
+              <v-divider></v-divider>
+              <p class="font-weight-bold text-body-1">Parent Contact Info</p>
+              <p>Name(s): {{ auditioner.parentName }}</p>
+              <p>Email(s): {{ auditioner.parentEmail }}</p>
+              <p>Cell(s): {{ auditioner.parentCell }}</p>
+            </v-card-text>
+            <v-card-actions v-if="getNextAction(auditioner.status)">
+              <v-btn color="primary" @click="setNextAction(auditioner)">{{
+                getNextAction(auditioner.status)
+              }}</v-btn>
+            </v-card-actions>
           </v-card>
         </v-dialog>
       </v-card>

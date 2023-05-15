@@ -1,60 +1,46 @@
 <script setup lang="ts">
 import AuditionerCard from "@/components/AuditionerCard.vue";
+import { auditionerProps } from "@/types";
+import { ref, computed } from "vue";
+
+const props = defineProps<{
+  auditioners: auditionerProps[];
+  status: string;
+  statusText: string;
+}>();
+let searchString = ref("");
+const filteredAuditioners = computed(() => {
+  return props.auditioners.filter((auditioner) => {
+    if (auditioner.status === props.status) {
+      if (searchString.value === "" || searchString.value === null) {
+        return true;
+      } else {
+        return auditioner.fullName
+          .toLowerCase()
+          .includes(searchString.value.toLowerCase());
+      }
+    }
+    return false;
+  });
+});
 </script>
 
 <template>
-  <v-container>
-    <v-row>
-      <v-col>
-        <div class="text-center text-h2">Footloose the Musical</div>
-        <div class="text-center text-h3">Front Range Theatre Company</div>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
-        <div class="text-center text-h4 mb-1">Registered</div>
-        <v-card elevation="3" class="px-2 py-2">
-          <v-text-field
-            clearable
-            label="Search"
-            prepend-inner-icon="mdi-magnify"
-            variant="outlined"
-          ></v-text-field>
-          <auditioner-card />
-          <auditioner-card />
-          <auditioner-card />
-        </v-card>
-      </v-col>
-      <v-col>
-        <h3 class="text-center text-h4 mb-1">Checked In</h3>
-        <v-card elevation="3" class="px-2 py-2">
-          <v-text-field
-            clearable
-            label="Search"
-            prepend-inner-icon="mdi-magnify"
-            variant="outlined"
-          ></v-text-field>
-          <auditioner-card />
-          <auditioner-card />
-          <auditioner-card />
-        </v-card>
-      </v-col>
-      <v-col>
-        <h3 class="text-center text-h4 mb-1">Complete</h3>
-        <v-card elevation="3" class="px-2 py-2">
-          <v-text-field
-            clearable
-            label="Search"
-            prepend-inner-icon="mdi-magnify"
-            variant="outlined"
-          ></v-text-field>
-          <auditioner-card />
-          <auditioner-card />
-          <auditioner-card />
-        </v-card>
-      </v-col>
-    </v-row>
-  </v-container>
+  <div class="text-center text-h4 mb-3">{{ statusText }}</div>
+  <v-card elevation="3" class="px-2 py-2">
+    <v-text-field
+      clearable
+      label="Search"
+      prepend-inner-icon="mdi-magnify"
+      variant="outlined"
+      v-model="searchString"
+    ></v-text-field>
+    <auditioner-card
+      v-for="auditioner in filteredAuditioners"
+      :auditioner="auditioner"
+      :key="auditioner.fullName"
+    />
+  </v-card>
 </template>
 
 <style scoped></style>
