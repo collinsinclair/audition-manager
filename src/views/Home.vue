@@ -301,7 +301,9 @@ const auditionerData = ref([
     status: "complete",
   },
 ]);
-auditionerData.value.forEach((aud) => {aud.id = Math.random()});
+auditionerData.value.forEach((aud) => {
+  aud.id = Math.random();
+});
 function getProgressValue(): number {
   const complete = auditionerData.value.filter(
     (auditioner) => auditioner.status === "complete"

@@ -10,18 +10,22 @@ const props = defineProps<{
 }>();
 let searchString = ref("");
 const filteredAuditioners = computed(() => {
-  return props.auditioners.filter((auditioner) => {
-    if (auditioner.status === props.status) {
-      if (searchString.value === "" || searchString.value === null) {
-        return true;
-      } else {
-        return auditioner.fullName
-          .toLowerCase()
-          .includes(searchString.value.toLowerCase());
+  return props.auditioners
+    .filter((auditioner) => {
+      if (auditioner.status === props.status) {
+        if (searchString.value === "" || searchString.value === null) {
+          return true;
+        } else {
+          return auditioner.fullName
+            .toLowerCase()
+            .includes(searchString.value.toLowerCase());
+        }
       }
-    }
-    return false;
-  });
+      return false;
+    })
+    .sort((a, b) => {
+      return a.fullName.localeCompare(b.fullName);
+    });
 });
 </script>
 
@@ -35,7 +39,7 @@ const filteredAuditioners = computed(() => {
     prepend-inner-icon="mdi-magnify"
     variant="outlined"
     v-model="searchString"
-    style="margin-bottom: -10px;"
+    style="margin-bottom: -10px"
   ></v-text-field>
   <v-card elevation="3" class="cards px-2 py-2">
     <auditioner-card
