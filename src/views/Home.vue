@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { auditionerProps } from "@/types";
 import QueueList from "@/components/QueueList.vue";
 
 const auditionerData = ref([

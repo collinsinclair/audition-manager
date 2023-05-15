@@ -30,6 +30,23 @@ function setNextAction(auditioner: auditionerProps): void {
   }
   dialogOpen.value = false;
 }
+
+function getStatusColor(status: string): string {
+  switch (status) {
+    case "registered": {
+      return "blue";
+    }
+    case "waiting": {
+      return "orange";
+    }
+    case "complete": {
+      return "green";
+    }
+    default: {
+      return "grey";
+    }
+  }
+}
 </script>
 
 <template>
@@ -41,15 +58,25 @@ function setNextAction(auditioner: auditionerProps): void {
         v-bind="props"
         @click="dialogOpen = true"
       >
-        <v-card-title
-          >{{ auditioner.fullName }} ({{ auditioner.age }})</v-card-title
-        >
+        <v-card-title>
+          {{ auditioner.fullName }} ({{ auditioner.age }})
+          <v-icon
+            icon="mdi-circle-medium"
+            :color="getStatusColor(auditioner.status)"
+            style="float: right"
+          />
+        </v-card-title>
         <v-card-subtitle>{{ auditioner.pronouns }}</v-card-subtitle>
         <v-dialog v-model="dialogOpen" width="auto">
           <v-card>
-            <v-card-title
-              >{{ auditioner.fullName }} ({{ auditioner.age }})</v-card-title
-            >
+            <v-card-title>
+              {{ auditioner.fullName }} ({{ auditioner.age }})
+              <v-icon
+                icon="mdi-circle-medium"
+                :color="getStatusColor(auditioner.status)"
+                style="float: right"
+              />
+            </v-card-title>
             <v-card-subtitle>{{ auditioner.pronouns }}</v-card-subtitle>
             <v-card-text>
               <p class="font-weight-bold text-body-1">Student Contact Info</p>
