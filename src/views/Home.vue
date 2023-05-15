@@ -1092,7 +1092,7 @@ function getProgressValue(): number {
 </script>
 
 <template>
-  <v-container>
+  <v-container style="height: 100%">
     <v-row>
       <v-col>
         <div class="text-center text-h1">Musical Auditions</div>
@@ -1107,7 +1107,7 @@ function getProgressValue(): number {
         ></v-progress-linear>
       </v-col>
     </v-row>
-    <v-row>
+    <v-row class="queue-row">
       <v-col>
         <QueueList
           :auditioners="auditionerData"
@@ -1133,4 +1133,15 @@ function getProgressValue(): number {
   </v-container>
 </template>
 
-<style scoped></style>
+<style scoped>
+.queue-row {
+  height: 100%;
+  overflow-y: hidden;
+
+}
+
+.queue-row > .v-col {
+  max-height: 100%;
+  overflow-y: hidden;
+}
+</style>
