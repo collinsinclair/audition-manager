@@ -26,7 +26,9 @@ const filteredAuditioners = computed(() => {
 </script>
 
 <template>
-  <div class="text-center text-h4 mb-3">{{ statusText }}</div>
+  <div class="text-center text-h4 mb-3">
+    {{ statusText }} ({{ filteredAuditioners.length }})
+  </div>
   <v-card elevation="3" class="px-2 py-2">
     <v-text-field
       clearable

@@ -34,13 +34,13 @@ function setNextAction(auditioner: auditionerProps): void {
 function getStatusColor(status: string): string {
   switch (status) {
     case "registered": {
-      return "blue";
+      return "primary";
     }
     case "waiting": {
-      return "orange";
+      return "warning";
     }
     case "complete": {
-      return "green";
+      return "success";
     }
     default: {
       return "grey";

@@ -103,6 +103,16 @@ const auditionerData = ref([
     status: "complete",
   },
 ]);
+function getProgressValue(): number {
+  return (
+    (100 *
+      (auditionerData.value.length -
+        auditionerData.value.filter(
+          (auditioner) => auditioner.status === "registered"
+        ).length)) /
+    auditionerData.value.length
+  );
+}
 </script>
 
 <template>
@@ -111,6 +121,14 @@ const auditionerData = ref([
       <v-col>
         <div class="text-center text-h1">Musical Auditions</div>
         <div class="text-center text-subtitle-1">Theatre Company</div>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        <v-progress-linear
+          :model-value="getProgressValue()"
+          color="primary"
+        ></v-progress-linear>
       </v-col>
     </v-row>
     <v-row>
