@@ -41,7 +41,7 @@ const filteredAuditioners = computed(() => {
     <auditioner-card
       v-for="auditioner in filteredAuditioners"
       :auditioner="auditioner"
-      :key="auditioner.fullName"
+      :key="auditioner.id"
     />
   </v-card>
 </template>
